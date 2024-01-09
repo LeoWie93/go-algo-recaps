@@ -2,6 +2,7 @@ package arraylist
 
 import (
 	"errors"
+	"fmt"
 	"math"
 )
 
@@ -50,7 +51,7 @@ func (a *ArrayList) Prepend(item int) {
 
 	a.size++
 
-	// copy it on top instead of interating. test this one day how big the impact is between implementations
+	// copy it on top instead of iterating. test this on how big the performance impact is between implementations
 	// copy(a.list[1:], a.list)
 	// a.list[0] = item
 
@@ -59,7 +60,6 @@ func (a *ArrayList) Prepend(item int) {
 	}
 
 	a.list[0] = item
-
 }
 
 func (a *ArrayList) Append(item int) {
@@ -75,6 +75,17 @@ func (a *ArrayList) Grow() {
 	increased := make([]int, a.size*2, a.cap*2)
 	copy(increased, a.list)
 	a.list = increased
+	a.cap = len(increased)
+}
+
+func (a *ArrayList) Shrink() {
+	smallerSize := int(math.RoundToEven(float64(a.cap / 4 * 3)))
+
+	smaller := make([]int, smallerSize, smallerSize)
+
+	copy(smaller, a.list)
+	a.list = smaller
+	a.cap = len(smaller)
 }
 
 func (a *ArrayList) Remove(idx int) (int, error) {
@@ -88,12 +99,15 @@ func (a *ArrayList) Remove(idx int) (int, error) {
 		a.list[i] = a.list[i+1]
 	}
 
+	//set last value after moving values to 0
 	a.list[a.size-1] = 0
 
-	//check if we could shrink the array back down
+	// check if we could shrink the array back down
 	// is difference between cap and size equal or more than 25%?
-	if (a.cap-a.size)/a.cap*100 > 25 {
-
+	if float64(a.cap-a.size)/float64(a.cap)*100 > 25 {
+		fmt.Print(a.list)
+		a.Shrink()
+		fmt.Print(a.list)
 	}
 
 	a.size--

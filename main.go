@@ -47,6 +47,21 @@ func main() {
 	fmt.Println(a.Get(0))
 	fmt.Println(a.Get(7))
 
+	a.Append(2)
+	a.Append(2)
+	a.Append(3)
+	a.Append(5)
+	a.Append(3)
+	a.Append(5)
+
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
+	a.Remove(2)
 	a.Remove(2)
 
 	fmt.Println(a.Size())

@@ -8,6 +8,7 @@ import (
 	binarysearch "github.com/leowie93/go-alog-recap/binary-search"
 	linearsearch "github.com/leowie93/go-alog-recap/linear-search"
 	ringbuffer "github.com/leowie93/go-alog-recap/ring-buffer"
+	ringerbuffer2 "github.com/leowie93/go-alog-recap/ringer-buffer2"
 	"github.com/leowie93/go-alog-recap/twocrystalballs"
 )
 
@@ -98,4 +99,44 @@ func main() {
 	fmt.Println(r)
 	fmt.Println(r.Add(10))
 	fmt.Println(r)
+
+	fmt.Println("")
+	fmt.Println("")
+	fmt.Println("")
+	fmt.Println("ringerbuffer2")
+
+	r2 := ringerbuffer2.New(10, true)
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+
+	item, _ := r2.Read()
+	fmt.Println(item)
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+
+	fmt.Println(r2)
+
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+	r2.Add(ringerbuffer2.NewItem())
+
+	fmt.Println(r2)
+
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+	fmt.Println(r2.Read())
+
+	fmt.Println(r2)
 }

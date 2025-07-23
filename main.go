@@ -7,9 +7,9 @@ import (
 	arraylist "github.com/leowie93/go-alog-recap/array-list"
 	binarysearch "github.com/leowie93/go-alog-recap/binary-search"
 	linearsearch "github.com/leowie93/go-alog-recap/linear-search"
-	ringbuffer "github.com/leowie93/go-alog-recap/ring-buffer"
+	quicksort "github.com/leowie93/go-alog-recap/quick-sort"
 	ringerbuffer2 "github.com/leowie93/go-alog-recap/ringer-buffer2"
-	"github.com/leowie93/go-alog-recap/twocrystalballs"
+	twocrystalballs "github.com/leowie93/go-alog-recap/twocrystalballs"
 )
 
 func main() {
@@ -79,28 +79,6 @@ func main() {
 	fmt.Println(a)
 
 	//RingBuffer
-	r := ringbuffer.New(7, true)
-
-	r.Add(1)
-	r.Add(2)
-	r.Add(3)
-	r.Add(4)
-	r.Add(5)
-
-	fmt.Println(r.Read())
-	fmt.Println(r.Read())
-	fmt.Println(r.Read())
-
-	r.Add(6)
-	r.Add(7)
-	r.Add(8)
-	r.Add(9)
-
-	fmt.Println(r)
-	fmt.Println(r.Add(10))
-	fmt.Println(r)
-
-	fmt.Println("")
 	fmt.Println("")
 	fmt.Println("")
 	fmt.Println("ringerbuffer2")
@@ -139,4 +117,15 @@ func main() {
 	fmt.Println(r2.Read())
 
 	fmt.Println(r2)
+
+	testQuickSort()
+}
+
+func testQuickSort() {
+	scrambled := rand.Perm(5000000)
+	// fmt.Println(scrambled)
+
+	quicksort.Sort(&scrambled)
+
+	// fmt.Println(scrambled)
 }

@@ -4,14 +4,14 @@ func Binary(haystack []int, value int) int {
 	var lo int = 0
 	var hi int = len(haystack) - 1
 
-	var i int = 0
-	for next := true; next; next = i < hi {
+	var m int = 0
+	for next := true; next; next = m < hi {
 
 		m := lo + (hi-lo)/2
 
-		mValue := haystack[i]
+		mValue := haystack[m]
 		if mValue == value {
-			return i
+			return m
 		}
 
 		if mValue < value {
@@ -19,8 +19,6 @@ func Binary(haystack []int, value int) int {
 		} else {
 			hi = m - 1
 		}
-
-		i++
 	}
 
 	return -1
